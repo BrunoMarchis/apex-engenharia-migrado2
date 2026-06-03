@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Painel Administrativo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Painel Administrativo</h1>
+
+<table>
+
+<thead>
+
+<tr>
+<th>ID</th>
+<th>Nome</th>
+<th>Telefone</th>
+<th>Email</th>
+<th>Serviço</th>
+</tr>
+
+</thead>
+
+<tbody id="tabelaClientes"></tbody>
+
+</table>
+
+<script>
+
+async function carregarClientes(){
+
+const resposta = await fetch("/api/clientes");
+const clientes = await resposta.json();
+
+let html = "";
+
+clientes.forEach(cliente=>{
+
+html += `
+<tr>
+<td>${cliente.id}</td>
+<td>${cliente.nome}</td>
+<td>${cliente.telefone}</td>
+<td>${cliente.email}</td>
+<td>${cliente.servico}</td>
+</tr>
+`;
+
+});
+
+document.getElementById("tabelaClientes").innerHTML = html;
+
+}
+
+carregarClientes();
+
+</script>
+
+</body>
+</html>
