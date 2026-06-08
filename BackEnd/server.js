@@ -7,7 +7,6 @@ app.use(cors());
 app.use(express.json());
 
 const cors = require("cors");
-const db = require("./db");
 
 app.get("/", (req,res)=>{
  res.json({status:"online"});
