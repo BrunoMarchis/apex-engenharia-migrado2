@@ -30,29 +30,33 @@
 
 <script>
 
-async function carregarClientes(){
+const API_URL = "https://apex-engenharia-migrado2.onrender.com";
 
-const resposta = await fetch("/api/clientes");
-const clientes = await resposta.json();
+async function carregarClientes() {
 
-let html = "";
+    const resposta = await fetch(
+        `${API_URL}/api/clientes`
+    );
 
-clientes.forEach(cliente=>{
+    const clientes = await resposta.json();
 
-html += `
-<tr>
-<td>${cliente.id}</td>
-<td>${cliente.nome}</td>
-<td>${cliente.telefone}</td>
-<td>${cliente.email}</td>
-<td>${cliente.servico}</td>
-</tr>
-`;
+    let html = "";
 
-});
+    clientes.forEach(cliente => {
 
-document.getElementById("tabelaClientes").innerHTML = html;
+        html += `
+        <tr>
+            <td>${cliente.id}</td>
+            <td>${cliente.nome}</td>
+            <td>${cliente.telefone}</td>
+            <td>${cliente.email}</td>
+            <td>${cliente.servico}</td>
+        </tr>
+        `;
 
+    });
+
+    document.getElementById("tabelaClientes").innerHTML = html;
 }
 
 carregarClientes();
